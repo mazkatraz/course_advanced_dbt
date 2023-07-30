@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "course-advanced-dbt"
+version = "0.1.0"
+description = ""
+authors = ["mazkatraz <mazkatraz@yahoo.com>"]
+readme = "README.md"
+packages = [{include = "course_advanced_dbt"}]
+
+[tool.poetry.dependencies]
+python = "3.11.1"
+dbt-core = "1.5.2"
+dbt-snowflake = "1.5.2"
+sqlfluff = "==2.1.2"
+sqlfluff-templater-dbt = "2.1.2"
+pre-commit = "3.3.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

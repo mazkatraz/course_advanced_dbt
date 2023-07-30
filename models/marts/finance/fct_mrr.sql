@@ -20,12 +20,30 @@ monthly_subscriptions AS (
         billing_period = 'monthly'
 ),
 
+date_spine AS (
+
+{{ dbt_utils.date_spine(
+    datepart="day",
+    start_date="cast('2019-01-01' as date)",
+    end_date="cast('2030-01-01' as date)"
+   )
+}}
+),
+
+dates AS (
+    SELECT
+        date_day AS calendar_date,
+        DAY(date_day) AS day_of_month,
+    FROM
+        date_spine
+)
+
 -- Use the dates spine to generate a list of months
 months AS (
     SELECT
-        calendar_date AS date_month
+        date_day AS date_month
     FROM
-        {{ ref('dim_dates') }}
+        dates
     WHERE
         day_of_month = 1
 ),
